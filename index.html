@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot through Spring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://assets.khelnow.com/news/uploads/2024/11/vk-2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            padding: 30px;
+        }
+        .chat-box {
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .user-message, .bot-message {
+            margin-bottom: 15px;
+        }
+        .user-message {
+            text-align: right;
+            color: #4caf50;
+        }
+        .bot-message {
+            text-align: left;
+            color: #2196F3;
+        }
+        input[type="text"], input[type="datetime-local"] {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-box">
+        <h2>Chatbot through Spring</h2>
+
+        <div class="chat-log">
+            <div class="user-message" th:text="${userMessage}"></div>
+            <div class="bot-message" th:text="${botMessage}"></div>
+        </div>
+
+        <form action="/chatbot/chat" method="post">
+            <input type="text" name="userMessage" placeholder="Type your message..." required />
+            <button type="submit">Send</button>
+        </form>
+
+        <form action="/chatbot/schedule" method="post">
+            <h3>Schedule an Appointment</h3>
+            <input type="text" name="title" placeholder="Appointment Title" required />
+            <input type="datetime-local" name="dateTime" required />
+            <button type="submit">Schedule</button>
+        </form>
+        <form action="/chatbot/view" method="get">
+            <button type="submit">View Appointments</button>
+        </form>
+        
+    </div>
+
+</body>
+</html>
